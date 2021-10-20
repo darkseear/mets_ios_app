@@ -1,0 +1,84 @@
+import React from 'react'
+import { Image, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import books from '../../images/books.png'
+import court from '../../images/court.png'
+import meeting from '../../images/meeting.png'
+
+function Platform({ siriOnClick }) {
+    return (
+        <View style={{ marginTop:20 }}>
+            
+            <TouchableOpacity  onPress={()=>{ siriOnClick({uri: 'https://m-ets.ru/edu'}) }} style={{ paddingRight:10, paddingLeft:10 }}>
+                <View>
+                    <View style={ styles.platform_parts}>
+                        <View style={{  width:75, height:75}}>
+                            <ImageBackground source={ books } style={styles.image} resizeMode="cover">
+                                </ImageBackground>
+                        </View>
+                        <View style={{ paddingLeft:20 , width:190, alignItems:'center', justifyContent:"center"  }}>
+                            <Text>
+                                ПЕРЕЙТИ НА ПОРТАЛ ОБУЧЕНИЕ
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>{ siriOnClick({uri: 'https://m-ets.ru/page/legal'}) }} style={{ paddingRight:10, paddingLeft:10 }}>
+                <View >
+                    <View style={ styles.platform_parts}>
+                        <View style={{  width:75, height:75}}>
+                            <ImageBackground source={ court } style={styles.image} resizeMode="cover">
+                                </ImageBackground>
+                        </View>
+                        <View style={{ paddingLeft:20 , width:190, alignItems:'center', justifyContent:"center"  }}>
+                            <Text>
+                                ПРАВОВАЯ ИНФОРМАЦИЯ
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>{ siriOnClick({uri: 'https://meetings.m-ets.ru/'}) }} style={{ paddingRight:10, paddingLeft:10 }}>
+                <View>
+                    <View style={ styles.platform_parts}>
+                        <View style={{  width:75, height:75}}>
+                            <ImageBackground source={ meeting } style={styles.image} resizeMode="cover">
+                                </ImageBackground>
+                        </View>
+                        <View style={{ paddingLeft:20 , width:190, height: 85, alignItems:'center', justifyContent:"center"  }}>
+                            <Text>
+                                ПЕРЕЙТИ НА ЭЛЕКТРОННУЮ ПЛОЩАДКУ ДЛЯ ПРОВЕДЕНИЯ СОБРАНИЙ КРЕДТООВ
+                            </Text>
+                        </View>
+                    </View>
+                </View>
+           </TouchableOpacity>
+
+
+        </View>
+    )
+}
+
+export default Platform
+
+const styles = StyleSheet.create({
+    platform_parts:{
+        flexDirection:'row',
+        marginBottom:15,
+        borderRadius:5,
+        padding:20,
+        width:'100%', 
+        maxWidth:800,
+        height:125,
+        backgroundColor: 'linear-gradient(to bottom, rgba(217,227,254,0.5), rgba(255,255,255,0.35), rgba(255,255,255,0.75), rgba(232,238,255,0.9))'
+    }
+    ,
+
+    image: {
+        flex: 1, 
+        justifyContent: 'center',
+        borderRadius: 25
+    }
+})
