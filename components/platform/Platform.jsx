@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
 import { Image, ImageBackground, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import books from '../../images/books.png'
@@ -9,8 +10,10 @@ function Platform({ siriOnClick }) {
         <View style={{ marginTop:20 }}>
             
             <TouchableOpacity  onPress={()=>{ siriOnClick({uri: 'https://m-ets.ru/edu'}) }} style={{ paddingRight:10, paddingLeft:10 }}>
+           
                 <View>
-                    <View style={ styles.platform_parts}>
+              
+                    <LinearGradient style={ styles.platform_parts} colors={[ 'rgba(217,227,254,0.5)' , 'rgba(255,255,255,0.35)', ' rgba(255,255,255,0.75)', 'rgba(232,238,255,0.9)']}>
                         <View style={{  width:75, height:75}}>
                             <ImageBackground source={ books } style={styles.image} resizeMode="cover">
                                 </ImageBackground>
@@ -19,14 +22,16 @@ function Platform({ siriOnClick }) {
                             <Text>
                                 ПЕРЕЙТИ НА ПОРТАЛ ОБУЧЕНИЕ
                             </Text>
-                        </View>
-                    </View>
+                         </View> 
+                     </LinearGradient>
+                   
                 </View>
+          
             </TouchableOpacity>
 
             <TouchableOpacity onPress={()=>{ siriOnClick({uri: 'https://m-ets.ru/page/legal'}) }} style={{ paddingRight:10, paddingLeft:10 }}>
                 <View >
-                    <View style={ styles.platform_parts}>
+                    <LinearGradient style={ styles.platform_parts} colors={[ 'rgba(217,227,254,0.5)' , 'rgba(255,255,255,0.35)', ' rgba(255,255,255,0.75)', 'rgba(232,238,255,0.9)']}>
                         <View style={{  width:75, height:75}}>
                             <ImageBackground source={ court } style={styles.image} resizeMode="cover">
                                 </ImageBackground>
@@ -36,13 +41,13 @@ function Platform({ siriOnClick }) {
                                 ПРАВОВАЯ ИНФОРМАЦИЯ
                             </Text>
                         </View>
-                    </View>
+                    </LinearGradient>
                 </View>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={()=>{ siriOnClick({uri: 'https://meetings.m-ets.ru/'}) }} style={{ paddingRight:10, paddingLeft:10 }}>
                 <View>
-                    <View style={ styles.platform_parts}>
+                    <LinearGradient style={ styles.platform_parts} colors={[ 'rgba(217,227,254,0.5)' , 'rgba(255,255,255,0.35)', ' rgba(255,255,255,0.75)', 'rgba(232,238,255,0.9)']}>
                         <View style={{  width:75, height:75}}>
                             <ImageBackground source={ meeting } style={styles.image} resizeMode="cover">
                                 </ImageBackground>
@@ -52,7 +57,7 @@ function Platform({ siriOnClick }) {
                                 ПЕРЕЙТИ НА ЭЛЕКТРОННУЮ ПЛОЩАДКУ ДЛЯ ПРОВЕДЕНИЯ СОБРАНИЙ КРЕДТООВ
                             </Text>
                         </View>
-                    </View>
+                    </LinearGradient>
                 </View>
            </TouchableOpacity>
 

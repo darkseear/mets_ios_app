@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View , TouchableOpacity ,StyleSheet, ScrollView} from 'react-native'
 
+
 function Categories(props) {
 
     // const arrCategoriesTitle = [   { id:1, title: "Автомобили и спецтезхника" },
