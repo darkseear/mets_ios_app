@@ -72,8 +72,9 @@ const MetsView = (props) => {
   return(
     <>
      <StatusBar 
+            hidden
             animated={true}
-            backgroundColor="grey"
+            // backgroundColor="grey"
           />
     <WebView  
         ref={ WEBVIEW_REF } 
@@ -97,6 +98,107 @@ const MetsView = (props) => {
         />
     </>
   );
+}
+
+const FooterApp = () => {
+  
+  return (
+                  <View style={{ backgroundColor: '#232e3f', width: '100%', minHeight: 100 }}>
+                
+                      <View style={{ marginBottom:10 , marginTop:20}}>
+                          <Text style={ styles.footer__text} >
+                            Наш телефон:
+                          </Text>
+                          <Text style={ styles.footer__text_bold }>
+                            8 800 555 7001
+                          </Text>
+                      </View>
+
+                      <View style={{ marginBottom:10 }}>
+                          <Text style={ styles.footer__text }>
+                            Наша почта:
+                          </Text>
+                          <Text style={ styles.footer__text_bold }>
+                            mail@m-ets.ru
+                          </Text>
+                      </View>
+
+                      <View style={{ width:'100%', textAlign:'center', marginBottom:10}}>
+                          <Text style={ styles.footer__text }>
+                            Мы в социальных сетях:
+                          </Text>
+                          <View style={{  width:'100%',  flexDirection: 'row', justifyContent: 'center', marginTop:10}}>
+                          
+                            <Image source={ logo_youtube } style={{ width: 50, height: 30, margin:7, marginTop:17}}/>
+                            <Image source={ logo_instagram } style={{ width: 50, height: 50, margin:7}}/>
+                            <Image source={ logo_telegram } style={{ width: 50, height: 50, margin:7}}/>
+                            <Image source={ logo_facebook } style={{ width: 50, height: 50, margin:7}}/>
+                            <Image source={ logo_tiktok } style={{ width: 50, height: 50, margin:7}}/>
+
+                          </View>
+                      </View>
+
+                      <View style={{ marginBottom:30, marginTop:0 }}>
+                        <Text style={ styles.footer__text }>
+                        © 2010 - 2021 ООО «МЭТС»
+                        </Text>
+                        <Text style={ styles.footer__text }>
+                        302030, Россия, г. Орел, ул. Новосильская, д. 11, пом. 4
+                        </Text>
+                      </View>
+
+                  </View>
+  )
+
+}
+
+const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked5}) => {
+  return (
+    
+    <View style={styles.menu__bottom}>
+      <TouchableOpacity  onPress={()=>{siriOnClick({uri:"https://m-ets.ru/"}) }}>
+        {/* <View style={ !cheked ? styles.button__offCheck : styles.button__onCheck }> */}
+        <View  style={ !cheked ? {width:36, height:32, opacity: 1} : styles.button__onCheck }>
+          <ImageBackground source={menu_home} style={{ flex:1 }} resizeMode="contain">
+            
+          </ImageBackground>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/search"}) }}>
+        <View  style={ !cheked2 ? styles.button__offCheck : styles.button__onCheck }>
+          <ImageBackground source={menu_search} style={{ flex:1 }} resizeMode="contain">
+            
+          </ImageBackground>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/KvaSpis"}) }}>
+        <View  style={ !cheked3 ? styles.button__offCheck : styles.button__onCheck}>
+          <ImageBackground source={menu_catalog} style={{ flex:1 }} resizeMode="contain">
+            
+          </ImageBackground>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/cabinet"}) }}>
+        <View style={ !cheked4 ? styles.button__offCheck : styles.button__onCheck}>
+          <ImageBackground source={menu_profile} style={{ flex:1 }} resizeMode="contain">
+            
+          </ImageBackground>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/page/feedback"}) }} >
+        <View style={ !cheked5 ?  styles.button__offCheck : styles.button__onCheck}>
+          <ImageBackground source={menu_feedback} style={{ flex:1 }} resizeMode="contain">
+            
+          </ImageBackground>
+        </View>
+      </TouchableOpacity>
+    </View>
+
+  )
 }
 
 export default function App() {
@@ -138,105 +240,24 @@ export default function App() {
               !state ?
               <>
                 <StatusBar 
-                  animated={true}
-                  backgroundColor="grey"
+                hidden
+                animated={true}
+                  // backgroundColor="grey"
                 />
-              <View style={{marginTop:30 ,paddingBottom:45,  width: '100%', minHeight:'100%' , flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative'}}>
+              <View style={{ width: '100%', minHeight:'100%' , flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative'}}>
                 <View style={ styles.header_flex }>
                     <Image source={ logo_mets } style={{  width: 120, height: 35}}/>
                   </View>
                   
                 <ScrollView pointerEvents="auto" style={{ width:'100%',  maxWidth:1024, marginBottom: 60}}>
+
                   <Content siriOnClick={siriOnClick} />                
-                  <View style={{ backgroundColor: '#232e3f', width: '100%', minHeight: 100 }}>
-                
-                      <View style={{ marginBottom:10 , marginTop:20}}>
-                          <Text style={ styles.footer__text} >
-                            Наш телефон:
-                          </Text>
-                          <Text style={ styles.footer__text_bold }>
-                            8 800 555 7001
-                          </Text>
-                      </View>
 
-                      <View style={{ marginBottom:10 }}>
-                          <Text style={ styles.footer__text }>
-                            Наша почта:
-                          </Text>
-                          <Text style={ styles.footer__text_bold }>
-                            mail@m-ets.ru
-                          </Text>
-                      </View>
+                  <FooterApp />
 
-                      <View style={{ width:'100%', textAlign:'center', marginBottom:10}}>
-                          <Text style={ styles.footer__text }>
-                            Мы в социальных сетях:
-                          </Text>
-                          <View style={{  width:'100%',  flexDirection: 'row', justifyContent: 'center', marginTop:10}}>
-                          
-                            <Image source={ logo_youtube } style={{ width: 50, height: 30, margin:7, marginTop:17}}/>
-                            <Image source={ logo_instagram } style={{ width: 50, height: 50, margin:7}}/>
-                            <Image source={ logo_telegram } style={{ width: 50, height: 50, margin:7}}/>
-                            <Image source={ logo_facebook } style={{ width: 50, height: 50, margin:7}}/>
-                            <Image source={ logo_tiktok } style={{ width: 50, height: 50, margin:7}}/>
-
-                          </View>
-                      </View>
-
-                      <View style={{ marginBottom:20, marginTop:30 }}>
-                        <Text style={ styles.footer__text }>
-                        © 2010 - 2021 ООО «МЭТС»
-                        </Text>
-                        <Text style={ styles.footer__text }>
-                        302030, Россия, г. Орел, ул. Новосильская, д. 11, пом. 4
-                        </Text>
-                      </View>
-
-                  </View>
                 </ScrollView>
                     
-                      <View style={styles.menu__bottom}>
-                        <TouchableOpacity  onPress={()=>{siriOnClick({uri:"https://m-ets.ru/"}) }}>
-                          {/* <View style={ !cheked ? styles.button__offCheck : styles.button__onCheck }> */}
-                          <View  style={ !cheked ? {width:36, height:32, opacity: 1} : styles.button__onCheck }>
-                            <ImageBackground source={menu_home} style={{ flex:1 }} resizeMode="contain">
-                              
-                            </ImageBackground>
-                          </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/search"}) }}>
-                          <View  style={ !cheked2 ? styles.button__offCheck : styles.button__onCheck }>
-                            <ImageBackground source={menu_search} style={{ flex:1 }} resizeMode="contain">
-                              
-                            </ImageBackground>
-                          </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/KvaSpis"}) }}>
-                          <View  style={ !cheked3 ? styles.button__offCheck : styles.button__onCheck}>
-                            <ImageBackground source={menu_catalog} style={{ flex:1 }} resizeMode="contain">
-                              
-                            </ImageBackground>
-                          </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/cabinet"}) }}>
-                          <View style={ !cheked4 ? styles.button__offCheck : styles.button__onCheck}>
-                            <ImageBackground source={menu_profile} style={{ flex:1 }} resizeMode="contain">
-                              
-                            </ImageBackground>
-                          </View>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/page/contacts"}) }} >
-                          <View style={ !cheked5 ?  styles.button__offCheck : styles.button__onCheck}>
-                            <ImageBackground source={menu_feedback} style={{ flex:1 }} resizeMode="contain">
-                              
-                            </ImageBackground>
-                          </View>
-                        </TouchableOpacity>
-                      </View>
+                <NavigationPanel siriOnClick={siriOnClick} cheked={cheked} cheked={cheked2} cheked3={cheked3} cheked4={cheked4} cheked5={cheked5}/>
 
               </View>
 
@@ -257,8 +278,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    overflow:'scroll',
-    marginTop:30
+    overflow:'scroll'
   },
 
   button_container:{
@@ -307,7 +327,7 @@ const styles = StyleSheet.create({
     height:60, 
     backgroundColor:'#f4f6f8', 
     position:'absolute', 
-    bottom:55, 
+    bottom:25, 
     alignItems:'center', 
     justifyContent:'space-between', 
     flexDirection:'row',

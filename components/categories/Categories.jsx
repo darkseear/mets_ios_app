@@ -89,20 +89,22 @@ const styles = StyleSheet.create({
         borderColor:'#2c4fa1',
         borderWidth: 4,
         borderRadius: 5,
-        minWidth:110,
-        maxWidth:135,
-        minHeight: 100,
+        minWidth:280,
+        height: 70,
         marginRight: 5,
         justifyContent:'center',
+        alignContent:'space-between',
         shadowRadius: 3,
         padding:5,
-        backgroundColor:'linear-gradient(to bottom, rgba(217,227,254,0.5), rgba(255,255,255,0.35), rgba(255,255,255,0.75), rgba(232,238,255,0.9))'
+        backgroundColor:'linearGradient(to bottom, rgba(217,227,254,0.5), rgba(255,255,255,0.35), rgba(255,255,255,0.75), rgba(232,238,255,0.9))'
     },
     categories_parts_text:{
         textAlign:'center',
         color:'#2c4fa1',
         fontSize: 12,
         fontStyle:'normal',
-        textTransform:'uppercase'        
+        fontWeight:'bold',
+        textTransform:'uppercase',
+        width:'100%'        
     }
 })
