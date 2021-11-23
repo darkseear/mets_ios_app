@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URL = "http://bocharov-stage.dvlg.ru/"
+// const URL = "http://bocharov-stage.dvlg.ru/"
+const URL = "https://m-ets.ru/"
 
 const instance = axios.create({ 
     baseURL: URL,
@@ -18,4 +19,24 @@ export function getSpec(){
                     // arr = resp.data.results
                     if(resp) alert(ok)
                 })
+}
+
+export const getSpecOneAsinc = async (lots_id) => {
+    try{
+        const resp = await fetch(URL + `getAppData?act=spec_data&lots_id=${lots_id}`);
+        const json = await resp.json();
+        return json.results;
+    } catch (error){
+        alert(error);
+    }
+}
+
+export const getSpecAsinc =  async () => {
+    try{
+        const resp = await fetch(URL + 'getAppData?act=top_torgi');
+        const json = await resp.json();
+        return json.results;
+    } catch (error){
+        console.log(error)
+    } 
 }

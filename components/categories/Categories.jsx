@@ -1,8 +1,11 @@
+import { useNavigation } from '@react-navigation/core'
 import React from 'react'
 import { Text, View , TouchableOpacity ,StyleSheet, ScrollView} from 'react-native'
 
 
 function Categories(props) {
+
+    const navigation = useNavigation()
 
     // const arrCategoriesTitle = [   { id:1, title: "Автомобили и спецтезхника" },
     //                 { id:2, title: "Недвижимость для личных целей" }, 
@@ -19,15 +22,15 @@ function Categories(props) {
                 
                     <ScrollView horizontal={true} >
                         <View style={{ flex: 0.1, flexDirection:'row', width:'100%', padding: 5 }}>
-                            <TouchableOpacity  onPress ={()=> props.siriOnClick({uri: 'https://m-ets.ru/KvaSpis?g=1'}) } style={ styles.categories_parts } >
-                                <View  >
+                            <TouchableOpacity onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/KvaSpis?g=1']}) } style={ styles.categories_parts } >
+                                <View >
                                     <Text style={ styles.categories_parts_text }>
                                         Автомобили и спецтезхника
                                     </Text>
                                 </View>
                             </TouchableOpacity>
 
-                            <TouchableOpacity    onPress  ={()=> props.siriOnClick({uri: 'https://m-ets.ru/KvaSpis?g=2'}) } style={ styles.categories_parts }> 
+                            <TouchableOpacity onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/KvaSpis?g=2']}) } style={ styles.categories_parts }> 
                                 <View>
                                     <Text style={ styles.categories_parts_text }>
                                         Недвижимость для личных целей
@@ -35,7 +38,7 @@ function Categories(props) {
                                 </View>
                             </TouchableOpacity>
 
-                            <TouchableOpacity  onPress  ={()=> props.siriOnClick({uri: 'https://m-ets.ru/KvaSpis?g=3'}) } style={ styles.categories_parts }>
+                            <TouchableOpacity onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/KvaSpis?g=3']}) }style={ styles.categories_parts }>
                                 <View>
                                     <Text style={ styles.categories_parts_text }>
                                         Недвижимость для бизнеса
@@ -43,7 +46,7 @@ function Categories(props) {
                                 </View>
                             </TouchableOpacity> 
 
-                            <TouchableOpacity onPress ={()=> props.siriOnClick({uri: 'https://m-ets.ru/KvaSpis?g=4'}) } style={ styles.categories_parts }>   
+                            <TouchableOpacity onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/KvaSpis?g=4']}) } style={ styles.categories_parts }>   
                             <View  >
                                 <Text style={ styles.categories_parts_text }>
                                     Земельные участки
@@ -51,7 +54,7 @@ function Categories(props) {
                             </View>
                            </TouchableOpacity>
 
-                            <TouchableOpacity onPress  ={()=> props.siriOnClick({uri: 'https://m-ets.ru/KvaSpis?g=5'}) } style={ styles.categories_parts }>
+                            <TouchableOpacity onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/KvaSpis?g=5']}) }style={ styles.categories_parts }>
                                 <View>
                                     <Text style={ styles.categories_parts_text }>
                                     Земельные участки
@@ -59,7 +62,7 @@ function Categories(props) {
                                 </View>
                             </TouchableOpacity>
 
-                            <TouchableOpacity onPress  ={()=> props.siriOnClick({uri: 'https://m-ets.ru/KvaSpis?g=5'}) } style={ styles.categories_parts }>
+                            <TouchableOpacity onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/KvaSpis?g=6']}) }style={ styles.categories_parts }>
                                 <View >
                                     <Text style={ styles.categories_parts_text }>
                                         Прочее

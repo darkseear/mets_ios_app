@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
-import { StyleSheet,  Text, Image,  View , ScrollView, Button, _View, SafeAreaView, BackHandler, TouchableOpacity, ImageBackground} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import { StyleSheet,  Text, Image,  View , ScrollView, Button, _View, BackHandler, TouchableOpacity, ImageBackground, SafeAreaViewBase, Linking} from 'react-native';
 import {WebView} from 'react-native-webview';
 import Content from './components/content/Content';
 
-import logo_mets from './images/logo-mets.png';
 import logo_facebook from './images/social__network/facebook.png';
 import logo_instagram from './images/social__network/instagram.png';
 import logo_telegram from './images/social__network/telegram.png';
@@ -17,88 +16,11 @@ import menu_feedback from './images/menu_ico/feedback.png';
 import menu_profile from './images/menu_ico/profile.png';
 
 import { StatusBar } from 'expo-status-bar';
-
-// import { StackNavigator } from 'react-navigation';
 import Loading from './components/loading/Loading';
-
-
-// const RootSteck = createStackNavigator(
-//   {
-//     App: App
-//   }
-// )
-
-const MetsView = (props) => {
-
-  const WEBVIEW_REF = React.useRef(null);
-  const [state, setState] = React.useState();
-
-  const webs = null;
-
-  const handleBackButton = () => {
-    WEBVIEW_REF.current.goBack();
-    return true;
-  }
-
-  React.useEffect(()=>{
-    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
-    return ()=>{
-      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
-    }
-  }, [])
-
-  // const onClickBack = () => {
-
-  //         // check to see if it is possible to go back
-  //         let canGoBack = this.props.navigation.canGoBack();
-  //         // handle what we do it we can/cannot go back
-  //         if (canGoBack) {
-  //           this.props.navigation.goBack();
-  //         } else {
-  //           this.doSomething();
-  //         }
-    
-  // }
-  // onNavigationStateChange = { ()=>{
-        //   // let canGoBack = this.props.navigation.canGoBack();
-        //   // handle what we do it we can/cannot go back
-        //   // if (canGoBack) {
-        //     goBack();
-        //   // } else {
-        //   //   this.doSomething();
-        //   // }
-        // } }
-
-  return(
-    <>
-     <StatusBar 
-            hidden
-            animated={true}
-            // backgroundColor="grey"
-          />
-    <WebView  
-        ref={ WEBVIEW_REF } 
-        allowsBackForwardNavigationGestures
-       
-        style={styles.container}
-        source={props.siri ? props.siri : { uri: 'https://m-ets.ru/' }}
-        // injectedJavaScriptAfterContentLoaded={runFirst}
-        // injectedJavaScriptBeforeContentLoaded={func}
-        autoManageStatusBarEnabled={true}
-        startInLoadingState={true}
-        javaScriptEnabled={true}
-        javaScriptEnabledAndroid={true}
-        renderLoading={() => {return <Loading/>}}
-        mixedContentMode={'compatibility'}
-        // onShouldStartLoadWithRequest={(request) => {
-        //   // Only allow navigating within this website
-        //   return request.url.startsWith('https://m-ets.ru');
-        // }}
-     
-        />
-    </>
-  );
-}
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Header from './components/header/Header';
+import { useNavigation } from '@react-navigation/core';
+import { Link } from '@react-navigation/native';
 
 const FooterApp = () => {
   
@@ -109,7 +31,7 @@ const FooterApp = () => {
                           <Text style={ styles.footer__text} >
                             Наш телефон:
                           </Text>
-                          <Text style={ styles.footer__text_bold }>
+                          <Text onPress={ () =>  Linking.openURL('tel:88005557001') } style={ styles.footer__text_bold }>
                             8 800 555 7001
                           </Text>
                       </View>
@@ -118,23 +40,33 @@ const FooterApp = () => {
                           <Text style={ styles.footer__text }>
                             Наша почта:
                           </Text>
-                          <Text style={ styles.footer__text_bold }>
-                            mail@m-ets.ru
-                          </Text>
+                          
+                            <Text onPress={ () =>  Linking.openURL('mailto:mail@m-ets.ru') } style={ styles.footer__text_bold }>
+                              mail@m-ets.ru
+                            </Text>
+                          
                       </View>
 
                       <View style={{ width:'100%', textAlign:'center', marginBottom:10}}>
                           <Text style={ styles.footer__text }>
                             Мы в социальных сетях:
                           </Text>
-                          <View style={{  width:'100%',  flexDirection: 'row', justifyContent: 'center', marginTop:10}}>
-                          
-                            <Image source={ logo_youtube } style={{ width: 50, height: 30, margin:7, marginTop:17}}/>
+                          <View style={{  width:'100%', flexDirection: 'row', justifyContent: 'center', marginTop:10}}>
+                          <TouchableOpacity onPress={() => Linking.openURL('https://www.youtube.com/etpmets') }>
+                            <Image  source={ logo_youtube } style={{ width: 50, height: 30, margin:7, marginTop:17}}/>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => Linking.openURL('https://t.me/mets_ru') }>
                             <Image source={ logo_instagram } style={{ width: 50, height: 50, margin:7}}/>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => Linking.openURL('https://instagram.com/mets.ru') }>
                             <Image source={ logo_telegram } style={{ width: 50, height: 50, margin:7}}/>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => Linking.openURL('https://www.facebook.com/mets.ru') }>
                             <Image source={ logo_facebook } style={{ width: 50, height: 50, margin:7}}/>
+                          </TouchableOpacity>
+                          <TouchableOpacity onPress={() => Linking.openURL('https://www.tiktok.com/@mets.ru') }>
                             <Image source={ logo_tiktok } style={{ width: 50, height: 50, margin:7}}/>
-
+                          </TouchableOpacity>
                           </View>
                       </View>
 
@@ -153,10 +85,13 @@ const FooterApp = () => {
 }
 
 const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked5}) => {
+  
+  const navigation = useNavigation()
+  
   return (
     
     <View style={styles.menu__bottom}>
-      <TouchableOpacity  onPress={()=>{siriOnClick({uri:"https://m-ets.ru/"}) }}>
+      <TouchableOpacity onPress={ ()=> navigation.navigate('MetsWebview', {metsParams: [`https://m-ets.ru/`] })}>
         {/* <View style={ !cheked ? styles.button__offCheck : styles.button__onCheck }> */}
         <View  style={ !cheked ? {width:36, height:32, opacity: 1} : styles.button__onCheck }>
           <ImageBackground source={menu_home} style={{ flex:1 }} resizeMode="contain">
@@ -165,7 +100,7 @@ const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/search"}) }}>
+      <TouchableOpacity onPress={ ()=> navigation.navigate('MetsWebview', {metsParams: [`https://m-ets.ru/search`] })}>
         <View  style={ !cheked2 ? styles.button__offCheck : styles.button__onCheck }>
           <ImageBackground source={menu_search} style={{ flex:1 }} resizeMode="contain">
             
@@ -173,7 +108,7 @@ const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/KvaSpis"}) }}>
+      <TouchableOpacity onPress={ ()=> navigation.navigate('MetsWebview', {metsParams: [`https://m-ets.ru/page/user-manuals`] })}>
         <View  style={ !cheked3 ? styles.button__offCheck : styles.button__onCheck}>
           <ImageBackground source={menu_catalog} style={{ flex:1 }} resizeMode="contain">
             
@@ -181,7 +116,7 @@ const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/cabinet"}) }}>
+      <TouchableOpacity onPress={ ()=> navigation.navigate('MetsWebview', {metsParams: [`https://m-ets.ru/cabinet`] })}>
         <View style={ !cheked4 ? styles.button__offCheck : styles.button__onCheck}>
           <ImageBackground source={menu_profile} style={{ flex:1 }} resizeMode="contain">
             
@@ -189,7 +124,7 @@ const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={()=>{ siriOnClick({uri:"https://m-ets.ru/page/feedback"}) }} >
+      <TouchableOpacity onPress={ ()=> navigation.navigate('MetsWebview', {metsParams: [`https://m-ets.ru/page/feedback`] })}>
         <View style={ !cheked5 ?  styles.button__offCheck : styles.button__onCheck}>
           <ImageBackground source={menu_feedback} style={{ flex:1 }} resizeMode="contain">
             
@@ -201,7 +136,7 @@ const NavigationPanel = ({siriOnClick, cheked, cheked2, cheked3, cheked4, cheked
   )
 }
 
-export default function App() {
+export default function HomeScreen({ navigation }) {
 
 
   // const [ loadingApp, setLoadingApp ] = useState(false)
@@ -226,47 +161,41 @@ export default function App() {
   //   )
   // }
 
+
   return (
-
-      <>
-     
-        {/* <SafeAreaView  >
-           <StatusBar 
-            animated={true}
-            backgroundColor="grey"
-          /> */}
-            {
-
-              !state ?
-              <>
-                <StatusBar 
-                hidden
-                animated={true}
-                  // backgroundColor="grey"
-                />
-              <View style={{ width: '100%', minHeight:'100%' , flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative'}}>
-                <View style={ styles.header_flex }>
-                    <Image source={ logo_mets } style={{  width: 120, height: 35}}/>
-                  </View>
-                  
-                <ScrollView pointerEvents="auto" style={{ width:'100%',  maxWidth:1024, marginBottom: 60}}>
-
-                  <Content siriOnClick={siriOnClick} />                
+    <>
+          { !state ?
+            <SafeAreaView style={{ flex:1 }}>
+              
+              <View style={{ width: '100%', height:'100%' , flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative'}}>
+                <Header/> 
+                <ScrollView pointerEvents="auto" style={{ width:'100%',  maxWidth:1024, marginBottom: 50}}>
+                  <Content navigation={navigation} siriOnClick={siriOnClick} />   
+            
+                  {/* test_block */}
+                     
+                  {/* <View>
+                    <Button 
+                        title="Go to Details Mets"
+                        onPress={()=>{
+                            navigation.navigate('MetsWebview');
+                            // navigation.navigate('MetsWebview', {metsParams:['http://bocharov-stage.dvlg.ru/']});
+                        }}
+                    />
+                  </View>      */}
 
                   <FooterApp />
-
                 </ScrollView>
                     
                 <NavigationPanel siriOnClick={siriOnClick} cheked={cheked} cheked={cheked2} cheked3={cheked3} cheked4={cheked4} cheked5={cheked5}/>
 
               </View>
 
-              </>
+            </SafeAreaView>
               :
-              <MetsView siri={siri} />
+            <MetsView siri={siri} />
 
             } 
-        {/* </SafeAreaView > */}
     </>
   );
 }
@@ -290,14 +219,6 @@ const styles = StyleSheet.create({
   my_button:{
     width: 100,
     height: 50
-  },
-
-  header_flex:{
-    width: '100%', 
-    alignItems: 'center',
-    height:55,
-    paddingTop:12,
-    top:0,
   },
   
   footer:{
@@ -323,11 +244,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: -5},
     shadowRadius: 20,
     elevation:1,
-    width:'100%', 
+    flex:1,
+    width:'100%',
     height:60, 
     backgroundColor:'#f4f6f8', 
     position:'absolute', 
-    bottom:25, 
+    bottom:0, 
     alignItems:'center', 
     justifyContent:'space-between', 
     flexDirection:'row',

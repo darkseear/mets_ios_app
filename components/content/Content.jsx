@@ -7,17 +7,20 @@ import Spec from '../spec/Spec'
 import SpecButton from '../spec/specButton/SpecButton'
 import Platform from '../platform/Platform'
 import Nv from '../nv/Nv'
+import { getSpecAsinc } from '../../api/api'
 
 export default function Content(props) {
 
-    const [test, setTest] = React.useState(null)
+    const [test, setTest] = React.useState([])
     
     // const URL = "http://bocharov-stage.dvlg.ru/"
     const URL = "http://m-ets.ru/"
  
     React.useEffect(()=>{
         // getSpec()
-        getSpecAsinc();
+        getSpecAsinc().then((resp)=>{
+            setTest(resp)
+        })
     }, [])
 
     function getSpec(){
@@ -32,22 +35,11 @@ export default function Content(props) {
                     })  
     }
 
-    const getSpecAsinc =  async () => {
-        try{
-            const resp = await fetch(URL + 'getAppData?act=top_torgi');
-            const json = await resp.json();
-            setTest(json.results);
-        } catch (error){
-            console.log(error)
-        } 
-    }
-    
-
     return ( 
        <ScrollView style={{ minHeight:500, width: '100%', }}>
            <View style={{ width: '100%' }}>
                 
-                <Spec arrImg={test} siriOnClick={props.siriOnClick}/> 
+                <Spec navigation={props.navigation} arrImg={test} siriOnClick={props.siriOnClick}/> 
                 <SpecButton siriClickButton={props.siriOnClick}/>
                 <MapSearch siriOnClick={props.siriOnClick}/>
                 <Categories siriOnClick={props.siriOnClick} />
