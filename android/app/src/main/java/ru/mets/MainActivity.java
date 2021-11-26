@@ -1,4 +1,4 @@
-package com.darkseear.myapp;
+package ru.mets;
 import android.content.res.Configuration;
 import android.content.Intent;
 

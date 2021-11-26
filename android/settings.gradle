@@ -1,4 +1,4 @@
-rootProject.name = 'mets'
+rootProject.name = 'ЭТП МЭТС'
 
 apply from: '../node_modules/react-native-unimodules/gradle.groovy'
 includeUnimodulesProjects()

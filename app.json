@@ -1,19 +1,24 @@
 {
   "expo": {
     "name": "ЭТП МЭТС",
-    "description":"Электронная торговая площадка МЭТС",
+    "description": "Электронная торговая площадка МЭТС",
     "slug": "mets",
-    "sdkVersion":"42.0.0",
-    "platforms": ["ios"],
-    "version": "2.0.0",
-    "icon":"./icon.png",
+    "sdkVersion": "42.0.0",
+    "platforms": [
+      "ios"
+    ],
+    "version": "2.0.1",
+    "icon": "./icon.png",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "buildNumber":"1.8.1",
+      "buildNumber": "1.8.2",
       "bundleIdentifier": "ru.mets"
+    },
+    "android": {
+      "package": "ru.mets"
     }
   },
   "name": "ЭТП МЭТС"
