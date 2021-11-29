@@ -20,7 +20,7 @@ function MapSearch(props) {
                                     </Text>
                                 </View>
                                 <View style={{ width:'100%', alignItems:'center'}}>
-                                    <CustomButton myWidth={200} titleButton='НАЙТИ НА КАРТЕ' pass={'https://m-ets.ru/map'}/>
+                                    <CustomButton myWidth={200} titleButton='НАЙТИ НА КАРТЕ' press={'https://m-ets.ru/map'}/>
                                     {/* <Button onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/map']}) }  title={'НАЙТИ НА КАРТЕ'} /> */}
                                 </View>
                             </View>
