@@ -1,5 +1,6 @@
 import React from 'react'
 import { Image,Text, View , _View } from 'react-native';
+import loading_gif from '../../images/loader.gif';
 
 function Loading() {
     return (
@@ -7,7 +8,7 @@ function Loading() {
             {/* <Text style={{ fontSize:30 }}>
             Loading.....
             </Text> */}
-            <Image source={require('../../images/loader.gif')}/>
+            <Image source={ loading_gif }/>
         </View>
     )
 }

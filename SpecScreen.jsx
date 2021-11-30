@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { getSpecOneAsinc } from './api/api';
 import CustomButton from './components/components_kit/customButton/CustomButton';
+import CustomButtonBack from './components/components_kit/customButtonBack/CustomButtonBack';
 import Loading from './components/loading/Loading';
 import placeholder from './images/placeholder_image.png';
 
@@ -22,25 +23,13 @@ function SpecScreen({ navigation, route}) {
          })
     }, [])
 
-    const CustomButtonBack = () => {
-        return (
-            <View style={{ height:25 ,zIndex:10 }}>
-                <View style={{ position:'absolute', paddingLeft:10 }}>
-                    <Button 
-                        title="<--"
-                        onPress={ () => navigation.goBack()}
-                    />
-                </View>
-            </View>
-        ) 
-    }
-
     return (
         <SafeAreaView style={{ height:'100%' }}>
             <CustomButtonBack/>
+            
                     {
                         specState &&
-                        Array.isArray(specState) ?
+                        Array.isArray(specState) && specState!==undefined && specState !== null ?
                         <ScrollView style={ style.spec__container }>
                         {
                             specState.map((item)=> <View key={item.lot_id}> 
@@ -65,9 +54,9 @@ function SpecScreen({ navigation, route}) {
                                         item.foto && Array.isArray(item.foto) ?
                                         item.foto.map( (photo, index) =>  <TouchableOpacity key={photo} style={{marginRight:10 }} onPress={()=>setPhotoState(index)}>
                                             <View style={{ height:105, width:105 }}>
-                                            <ImageBackground source={{ uri: 'https://m-ets.ru/' + photo}} style={{ flex:1 }} resizeMode="cover"> 
-                                            
-                                            </ImageBackground>
+                                                <ImageBackground source={{ uri: 'https://m-ets.ru/' + photo}} style={{ flex:1 }} resizeMode="cover"> 
+                                                
+                                                </ImageBackground>
                                             </View>
                                             </TouchableOpacity>)
                                         :
@@ -112,11 +101,10 @@ function SpecScreen({ navigation, route}) {
                         </ScrollView>
                            
                         : 
-                        <View>
+                        <View style={{ flex:1 }}>
                             
-                            <Text>
                                 <Loading/>
-                            </Text>
+                            
                         </View>
                             
                     }

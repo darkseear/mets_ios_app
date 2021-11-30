@@ -1,23 +1,15 @@
 import { useNavigation } from '@react-navigation/core';
-import React, { useEffect } from 'react'
-import { ScrollView, View, Image, Text, ImageBackground, TouchableOpacity , StyleSheet } from 'react-native'
-import SpecScreen from '../../../SpecScreen';
+import React from 'react'
+import { View, ImageBackground, TouchableOpacity , StyleSheet } from 'react-native'
 
-
-function SpecParts({ uriImage, uri, siriOnClick, lots_id }) {
-
-    let testText = "Test text"
+function SpecParts({ uriImage, lots_id, uri }) {
 
     const navigation = useNavigation()
 
     return (
-        // <TouchableOpacity  onPress ={()=>  siriOnClick(uri)}>
-        <TouchableOpacity  onPress ={()=>  navigation.navigate('SpecScreen', {lot_id : [lots_id]} ) }>
+        <TouchableOpacity  onPress ={()=>  lots_id ? navigation.navigate('SpecScreen', {lot_id : [lots_id]} ) : navigation.navigate('MetsWebview', {metsParams: [`https://m-ets.ru/${uri}`]})  }>
             <View style={styles.image_parts}>
                 <ImageBackground source={ uriImage } imageStyle={{ borderRadius: 6}} style={styles.image}  resizeMode="cover">
-                        {/* <Text>
-                            Какой то текст для фона 
-                        </Text> */}
                 </ImageBackground>
             </View>  
         </TouchableOpacity >            

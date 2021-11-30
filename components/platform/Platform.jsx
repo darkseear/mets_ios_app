@@ -13,7 +13,7 @@ function Platform() {
     return (
         <View style={{ marginTop:20 }}>
             
-            <TouchableOpacity  onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/page/edu']}) } style={{ paddingRight:10, paddingLeft:10 }}>
+            <TouchableOpacity  onPress={()=> navigation.navigate('MetsWebview', {metsParams: ['https://m-ets.ru/edu']}) } style={{ paddingRight:10, paddingLeft:10 }}>
                 <View>
                     <LinearGradient style={ styles.platform_parts} colors={[ 'rgba(217,227,254,0.5)' , 'rgba(255,255,255,0.35)', ' rgba(255,255,255,0.75)', 'rgba(232,238,255,0.9)']}>
                         <View style={{  width:75, height:75}}>

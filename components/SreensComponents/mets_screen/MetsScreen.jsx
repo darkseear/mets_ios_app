@@ -85,20 +85,6 @@ const MetsScreen = (props) => {
   
     return(
       <SafeAreaView style={{ flex:1, marginBottom:0}}>
-       {/* <StatusBar 
-              hidden
-              animated={true}
-              // backgroundColor="grey"
-            /> */}
-            {/* <Button 
-                    title="goBack"
-                    onPress={ () => navigation.goBack() }
-                /> */}
-            {/* <View style={{ height:100}}>
-                <Text>
-                    { press } 
-                </Text>
-            </View> */}
           <WebView  
               ref={ WEBVIEW_REF } 
               allowsBackForwardNavigationGestures

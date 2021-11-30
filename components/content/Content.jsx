@@ -23,18 +23,6 @@ export default function Content(props) {
         })
     }, [])
 
-    function getSpec(){
-        let ok = "ok"
-        axios.get(URL + 'getAppData?act=top_torgi')
-                    .then(resp=>{
-                        // arr = resp.data.results
-                        if(resp)  {
-                            console.log(resp.data.results)
-                            setTest((prev) => prev = resp.data.results)
-                        }
-                    })  
-    }
-
     return ( 
        <ScrollView style={{ minHeight:500, width: '100%', }}>
            <View style={{ width: '100%' }}>
@@ -45,18 +33,6 @@ export default function Content(props) {
                 <Categories siriOnClick={props.siriOnClick} />
                 <Platform siriOnClick={props.siriOnClick}/>
                 <Nv/>
-
-                {/* <View style={{ width:"100%", height:500 }}>
-                    <Button title={'hello-you'} onPress={()=>{
-                        getSpec()
-                    }}/>
-                    
-                    {
-                        
-                        test ? test.map((item)=> <Text key={item.id}> {item.date_create} </Text> ) : <Text> Загрузка данных, пожалуйста подождите... </Text>
-     
-                    }
-                </View> */}
 
            </View>
        </ScrollView>
